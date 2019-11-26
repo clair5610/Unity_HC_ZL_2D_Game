@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class learaAPI : MonoBehaviour
 {
-    private void Start()
+    public Transform tranA;
+    public Transform tranB;
+
+    public SpriteRenderer spriteA;
+
+   private void Start()
     {
         print("輸出");
 
@@ -23,6 +28,19 @@ public class learaAPI : MonoBehaviour
         Debug.Log(true);
         Debug.LogWarning("警告");
         Debug.LogError("錯誤");
+
+        //非靜態屬性:實體類別.屬性
+        //print(Transform.position); //是錯誤的
+        print(tranA.position);
+        print(tranB.position);
+        //存放非靜態屬性
+        tranA.position = new Vector3(-1, 0, 0);
+
+        tranA.localScale = new Vector3(5, 5, 5);
+
+        spriteA.flipX = true;
+
+        spriteA.flipY = true;
     }
 
     private void Update()
@@ -32,5 +50,10 @@ public class learaAPI : MonoBehaviour
 
         //偵測玩家是否按s
         print(Input.GetKeyDown("s"));
+
+        //非靜態方法:實體類別.方法(對應的引數)
+        // tranA.Rotate(0, 0, 10);
+        
+        
     }
 }
