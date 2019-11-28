@@ -592,6 +592,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jump: 100
   dead: 0
+  goScore: {fileID: 1398995251}
+  goGM: {fileID: 2139400344}
 --- !u!50 &235331181
 Rigidbody2D:
   serializedVersion: 4
@@ -1171,7 +1173,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 999
+  m_Text: 0
 --- !u!222 &1398995254
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1713,6 +1715,10 @@ MonoBehaviour:
   b: 3
   c: 9
   d: 1
+  apple: 5
+  coin: 3
+  key: 1
+  boom: 2
 --- !u!1 &2139400344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,7 +1735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2139400345
 MonoBehaviour:
   m_ObjectHideFlags: 0
