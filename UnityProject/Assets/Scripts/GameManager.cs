@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public int scoreHeight;
     [Header("水管")]
     public GameObject pipe; //GameObject 可以存放預製物和場景上的物件
-
+    [Header("介面群組")]
+    public GameObject goUI;
     ///<summary>
     ///生成水管功能
     ///</summary>
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
-
+        goUI.SetActive(true);
     }
 
     private void Start()
