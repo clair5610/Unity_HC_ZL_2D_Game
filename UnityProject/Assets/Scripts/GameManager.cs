@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI; //引用介面AI
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class GameManager : MonoBehaviour
     public GameObject pipe; //GameObject 可以存放預製物和場景上的物件
     [Header("介面群組")]
     public GameObject goUI;
+    [Header("分數介面")]
+    public Text textScore;
+    public Text textScoreHight;
+
     ///<summary>
     ///生成水管功能
     ///</summary>
@@ -37,7 +42,12 @@ public class GameManager : MonoBehaviour
     /// <param name="add">要添加的分數</param>
     public void AddScore(int add)
     {
+        //score = score + add; 下面是簡寫
+        score += add;
+        //textScore.text = score + "";
+        textScore.text = score.ToString(); //整數.轉字串()
 
+        SetHeightScore();
     }
 
     /// <summary>
@@ -45,6 +55,19 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void SetHeightScore()
     {
+
+        PlayerPrefs.GetInt("最高分數");
+        // 如果目前分數 > 最高分數
+        if (score > scoreHeight)
+        {
+            // 最高分數 = 目前分數
+            scoreHeight = score;
+            
+            PlayerPrefs.SetInt("最高分數", scoreHeight);
+            
+        }
+        textScoreHight.text = scoreHeight.ToString();
+
 
     }
 
@@ -54,6 +77,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         goUI.SetActive(true);
+        Ground.speed = 0;
     }
 
     private void Start()
@@ -61,5 +85,10 @@ public class GameManager : MonoBehaviour
         //SpawnPipe();
 
         InvokeRepeating("SpawnPipe", 0, 1.5f);
+        //遊戲開始 更新 最高分數介面
+        PlayerPrefs.GetInt("最高分數");        
+
+        textScoreHight.text = scoreHeight.ToString();
+
     }
 }

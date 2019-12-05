@@ -2,8 +2,10 @@
 
 public class Ground : MonoBehaviour
 {
-    [Header("速度"), Range(0, 100)]
-    public float speed = 10.5f;
+    // static 靜態 靜態會隱藏
+    // 但靜態後 此類別共用 包含子類別
+    // [Header("速度"), Range(0, 100)]
+    public static float speed = 5f;
 
     [Header("變形")]
     public Transform tran;

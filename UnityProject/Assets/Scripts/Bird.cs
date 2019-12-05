@@ -12,7 +12,11 @@ public class Bird : MonoBehaviour
     public Rigidbody2D r2d;
 
     public GameManager gm;
-    
+
+    [Header("音效區域")]
+    public AudioSource aud;
+    public AudioClip soundJump, soundHit, soundAdd;
+
     /// <summary>
     /// 小雞跳躍功能
     /// </summary>
@@ -37,10 +41,12 @@ public class Bird : MonoBehaviour
             r2d.Sleep();
             // 剛體.增加推力(二維向量<方法>)
             r2d.AddForce(new Vector2(0, jump));
-            
+
+
+            aud.PlayOneShot(soundJump, 1f);
         }
 
-        print(r2d.velocity);
+        
         // 剛體.設定角度(角度<浮點數>)
         r2d.SetRotation(5 * r2d.velocity.y);
 
@@ -51,9 +57,12 @@ public class Bird : MonoBehaviour
     /// </summary>
     private void Dead()
     {
+        if (dead) return;
         //布林值
         dead = true;
         gm.GameOver();
+
+        aud.PlayOneShot(soundHit, 1f);
     }
 
     /// <summary>
@@ -61,7 +70,9 @@ public class Bird : MonoBehaviour
     /// </summary>
     private void PassPipe()
     {
-
+        if (dead) return;
+        print("加分!");
+        gm.AddScore(1);
     }
 
     // 監聽玩家輸入 : 滑鼠、鍵盤、搖桿
@@ -81,6 +92,17 @@ public class Bird : MonoBehaviour
     // 觸發事件 : 觸發其他碰撞器開始執行一次(針對勾選 IsTrigger 的物件
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Dead();
+        if (collision.gameObject.name == "水管 - 上" || collision.gameObject.name == "水管 - 下")
+        {
+            Dead();
+        }
+
+        if (collision.gameObject.name == "加分區域")
+        {
+            PassPipe();
+        }
     }
+   
+    
+
 }
