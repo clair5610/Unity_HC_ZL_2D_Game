@@ -108,5 +108,6 @@ public class GameManager : MonoBehaviour
 
         textScoreHight.text = scoreHeight.ToString();
 
+        Ground.speed = 5;
     }
 }
