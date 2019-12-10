@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI; //引用介面AI
+using UnityEngine.UI;                //引用 介面 API
+using UnityEngine.SceneManagement;   //引用 場景管理 API 
 
 public class GameManager : MonoBehaviour
 {
@@ -80,12 +81,29 @@ public class GameManager : MonoBehaviour
         Ground.speed = 0;
     }
 
+    /// <summary>
+    /// 重新遊戲
+    /// </summary>
+    public void Replay()
+    {
+        //Application.LoadLevel("遊戲場景");   //應用程式.載入關卡("關卡名稱") 舊版 API
+        SceneManager.LoadScene("遊戲場景");    //場景管理.載入場景("關卡名稱") 新版 API
+    }
+
+    /// <summary>
+    /// 離開遊戲
+    /// </summary>
+    public void Exit()
+    {
+        Application.Quit(); //應用程式.離開遊戲
+    }
+
     private void Start()
     {
-        //SpawnPipe();
-
+        // SpawnPipe();
+        // 延遲重複調用方法("方法名稱"，延遲時間，重複頻率)
         InvokeRepeating("SpawnPipe", 0, 1.5f);
-        //遊戲開始 更新 最高分數介面
+        // 遊戲開始 更新 最高分數介面
         PlayerPrefs.GetInt("最高分數");        
 
         textScoreHight.text = scoreHeight.ToString();

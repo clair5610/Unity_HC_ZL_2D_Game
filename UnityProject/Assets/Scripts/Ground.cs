@@ -19,6 +19,12 @@ public class Ground : MonoBehaviour
         tran.Translate(-speed * Time.deltaTime, 0, 0);
     }
 
+    //遊戲開始事件
+    private void Start()
+    {
+        // 靜態欄位會保留上次的值(也就是遊戲失敗後水管速度變0)，必須重新設定
+        speed = 5;
+    }
     private void Update()
     {
         Move();
